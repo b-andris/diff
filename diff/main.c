@@ -15,10 +15,10 @@ void output(diffComponent** diff) {
 	int i = 0;
 	while (diff[i]) {
 		if (isUnchanged(diff[i])) {
-			printf("\e[30;48m%s\e[m",diff[i]->from);
+			printf("\e[0m%s\e[m",diff[i]->from);
 		} else {
-			printf("\e[38;41m%s\e[m",diff[i]->from);
-			printf("\e[38;42m%s\e[m",diff[i]->to);
+			printf("\e[41m%s\e[m",diff[i]->from);
+			printf("\e[42m%s\e[m",diff[i]->to);
 		}
 		i++;
 	}
@@ -27,17 +27,17 @@ void output(diffComponent** diff) {
 
 int main(int argc, const char * argv[]) {
 	if (argc != 3) {
-		puts("Usage: diff path/to/file/1 path/to/file/2\n\n");
+		puts("\e[31mUsage: diff path/to/file/1 path/to/file/2\n\n\e[m");
 		exit(EXIT_FAILURE);
 	}
 	FILE* fromFile = fopen(argv[1], "rb");
 	if (!fromFile) {
-		printf("ERROR: File %s Invalid\n\n",argv[1]);
+		printf("\e[31mERROR: File %s Invalid\n\n\e[m",argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	FILE* toFile = fopen(argv[2], "rb");
 	if (!toFile) {
-		printf("ERROR: File %s Invalid\n\n",argv[2]);
+		printf("\e[31mERROR: File %s Invalid\n\n\e[m",argv[2]);
 		fclose(fromFile);
 		exit(EXIT_FAILURE);
 	}
@@ -52,7 +52,7 @@ int main(int argc, const char * argv[]) {
 	if (!(fromBuffer && toBuffer)) {
 		free(fromBuffer);
 		free(toBuffer);
-		puts("ERROR: Memory Allocation Failed\n\n");
+		puts("\e[31mERROR: Memory Allocation Failed\n\n\e[m");
 		exit(EXIT_FAILURE);
 	}
 	fromBuffer[fromLength] = '\0';
