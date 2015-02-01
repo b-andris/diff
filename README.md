@@ -2,7 +2,7 @@
 A simple commandline diff-tool
 
 ## Compilation
-While I use Xcode to write diff all of Xcode's metadata is unnecessary to compile it. Simply compiling diff/main.c and diff/diff.c (Both of which rely on diff/diff.h) should work on virtually any System. diff should run and function correctly on most UNIX like systems.
+While I use Xcode to write diff all of Xcode's metadata is unnecessary to compile it. Simply compiling diff/main.c and diff/diff.c (Both of which rely on diff/diff.h) should work on virtually any System. diff should run and function correctly on most UNIX like systems. It also works on [YourOS](https://github.com/Gurgel100/Kernel), for which it was originally written.
 
 ## Usage
 If diff is properly installed on your system:
