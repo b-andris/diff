@@ -30,12 +30,12 @@ int main(int argc, const char * argv[]) {
 		puts("\e[31mUsage: diff path/to/file/1 path/to/file/2\n\n\e[m");
 		exit(EXIT_FAILURE);
 	}
-	FILE* fromFile = fopen(argv[1], "rb");
+	FILE* fromFile = fopen(argv[1], "r");
 	if (!fromFile) {
 		printf("\e[31mERROR: File %s Invalid\n\n\e[m",argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	FILE* toFile = fopen(argv[2], "rb");
+	FILE* toFile = fopen(argv[2], "r");
 	if (!toFile) {
 		printf("\e[31mERROR: File %s Invalid\n\n\e[m",argv[2]);
 		fclose(fromFile);
