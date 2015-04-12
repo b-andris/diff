@@ -15,10 +15,10 @@ void output(diffComponent** diff) {
 	int i = 0;
 	while (diff[i]) {
 		if (isUnchanged(diff[i])) {
-			printf("\e[0m%s\e[m",diff[i]->from);
+			printf("\e[0m%s\e[m", diff[i]->from);
 		} else {
-			printf("\e[41m%s\e[m",diff[i]->from);
-			printf("\e[42m%s\e[m",diff[i]->to);
+			printf("\e[41m%s\e[m", diff[i]->from);
+			printf("\e[42m%s\e[m", diff[i]->to);
 		}
 		i++;
 	}
@@ -32,19 +32,19 @@ int main(int argc, const char * argv[]) {
 	}
 	FILE* fromFile = fopen(argv[1], "r");
 	if (!fromFile) {
-		printf("\e[31mERROR: File %s Invalid\n\n\e[m",argv[1]);
+		printf("\e[31mERROR: File %s Invalid\n\n\e[m", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	FILE* toFile = fopen(argv[2], "r");
 	if (!toFile) {
-		printf("\e[31mERROR: File %s Invalid\n\n\e[m",argv[2]);
+		printf("\e[31mERROR: File %s Invalid\n\n\e[m", argv[2]);
 		fclose(fromFile);
 		exit(EXIT_FAILURE);
 	}
 	fseek(fromFile, 0, SEEK_END);
 	fseek(toFile, 0, SEEK_END);
-	long fromLength = ftell(fromFile);
-	long toLength = ftell(toFile);
+	size_t fromLength = (size_t) ftell(fromFile);
+	size_t toLength = (size_t) ftell(toFile);
 	fseek(fromFile, 0, SEEK_SET);
 	fseek(toFile, 0, SEEK_SET);
 	char* fromBuffer = malloc(fromLength+1);
@@ -64,4 +64,5 @@ int main(int argc, const char * argv[]) {
 	free(toBuffer);
 	fclose(fromFile);
 	fclose(toFile);
+	return 0;
 }

@@ -9,12 +9,11 @@
 #ifndef __Comment_Diff__diff__
 #define __Comment_Diff__diff__
 
-#include <stdio.h>
 #include <stdbool.h>
 
 struct diffComponent_t {
-	const char* from;
-	const char* to;
+	char* from;
+	char* to;
 };
 
 typedef struct diffComponent_t diffComponent;
