@@ -68,16 +68,16 @@ diffComponent** makeNullTerminateDiffComponentArrayWithCapacity(unsigned long le
 
 int getDistanceForEqualChars(char const* from, char const* to, int* cache, unsigned long fromOffset, unsigned long toOffset, unsigned long fromLength, unsigned long toLength, unsigned long fromIndex, unsigned long toIndex) {
 	int prevDistance = getDistance(from, to, cache, fromOffset + 1, toOffset + 1, fromLength, toLength);
-	cache[toIndex*fromLength+fromIndex] = prevDistance + 1;
-	return cache[toIndex*fromLength+fromIndex];
+	cache[toIndex * fromLength + fromIndex] = prevDistance + 1;
+	return cache[toIndex * fromLength + fromIndex];
 }
 
 int getDistanceForDifferentChars(char const* from, char const* to, int* cache, unsigned long fromOffset, unsigned long toOffset, unsigned long fromLength, unsigned long toLength, unsigned long fromIndex, unsigned long toIndex) {
 	int shortenedToDistance = getDistance(from, to, cache, fromOffset, toOffset + 1, fromLength, toLength);
 	int shortenedFromDistance = getDistance(from, to, cache, fromOffset + 1, toOffset, fromLength, toLength);
 	int prevDistance = MAX(shortenedToDistance, shortenedFromDistance);
-	cache[toIndex*fromLength+fromIndex] = prevDistance;
-	return cache[toIndex*fromLength+fromIndex];
+	cache[toIndex * fromLength + fromIndex] = prevDistance;
+	return cache[toIndex * fromLength + fromIndex];
 }
 
 int getDistance(const char* from, const char* to, int* cache, unsigned long fromOffset, unsigned long toOffset, unsigned long fromLength, unsigned long toLength){
